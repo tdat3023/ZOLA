@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { useState, useEffect, useRef  } from "react";
 import { View,
@@ -9,7 +8,7 @@ import { View,
         ImageBackground,
         SafeAreaView,
         Image,
-        Dimensions} 
+        Dimensions, Platform, StatusBar} 
 from 'react-native'
 
 
@@ -18,10 +17,11 @@ const WinHeight = Dimensions.get('window').height;
 
 export default Home = ({navigation}) =>{
     return (
+      
         <ImageBackground source={require('../images/back.png')} style={{width: '100%', height: '100%'}}>
-        <View style={styles.container}>
+        <View style={styles.AndroidSafeArea}>
               {/* Text Zalo */}
-          <View style= {{width: '100%', height: '40%', backgroundColor: 'red', marginTop: '15%', alignItems: 'center'}}>  
+          <View style= {{width: '100%', height: '40%', backgroundColor: 'red', alignItems: 'center'}}>  
             <Text style ={{fontSize:40, color: 'blue', alignItems: 'center'}}>Zalo</Text>
           </View>
     
@@ -38,7 +38,7 @@ export default Home = ({navigation}) =>{
             </TouchableOpacity>
           </View>
           
-          <View style= {{width: '100%', height: '10%', flexDirection: 'row', justifyContent: 'space-around', alignItems:'center'}}>
+          <View style= {{marginTop: '20%',width: '100%', height: '10%', flexDirection: 'row', justifyContent: 'space-around', alignItems:'center'}}>
           <TouchableOpacity><Text style={{fontSize: 15}}>Tiếng Việt</Text></TouchableOpacity>
           <TouchableOpacity><Text style={{fontSize: 15}}>English</Text></TouchableOpacity>
           </View>
@@ -46,15 +46,16 @@ export default Home = ({navigation}) =>{
         </View>
 
        </ImageBackground>
+    
       );
     }
     
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-  
-        width:'100%',
-        height:'100%',
-        
+   
+
+    AndroidSafeArea: {
+      flex: 1,
+      backgroundColor: 'white',
+      paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
     }
 });
