@@ -3,11 +3,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, SafeAreaView, Text } from "react-native";
-import Home from "./home";
-import Login from "./login";
-import ChatApp from "./chatApp";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import Home from "./Login/home";
+import Login from "./Login/login";
+import ChatApp from "./Chat/chatList";
 import ProFile from "./profile";
-import Setting from "./setting";
+import Contact from "./contacts";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -16,9 +17,37 @@ function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       {/* <Tab.Screen name="Home" component={Home}/> */}
-      <Tab.Screen name="ChatApp" component={ChatApp} />
-      <Tab.Screen name="Settings" component={Setting} />
-      <Tab.Screen name="ProFile" component={ProFile} />
+      <Tab.Screen
+        name="Tin nhắn"
+        component={ChatApp}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name="message-text-outline"
+              size={24}
+              color="black"
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Danh bạ"
+        component={Contact}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons name="contacts" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Cá nhân"
+        component={ProFile}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Ionicons name="person-circle-outline" size={24} color="black" />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }

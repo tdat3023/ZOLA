@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StatusBar } from "expo-status-bar";
 import { useState, useEffect, useRef } from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
 import {
   View,
   Text,
@@ -12,16 +9,14 @@ import {
   ImageBackground,
   SafeAreaView,
   Image,
-  TextInput,
   Dimensions,
-  Platform,
-  StatusBar,
 } from "react-native";
+// import background from '../src/images/background.png';
 
 const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
-export default ProFile = function ({ navigation }) {
+export default Resgister = function () {
   return (
     <View style={styles.AndroidSafeArea}>
       <View style={styles.container}>
@@ -41,40 +36,9 @@ export default ProFile = function ({ navigation }) {
 
           <View style={styles.moreTag}>
             <TouchableOpacity>
-              <Ionicons name="settings-outline" size={24} color="black" />
+              <Ionicons name="person-add" size={24} color="black" />
             </TouchableOpacity>
           </View>
-        </View>
-
-        {/*  */}
-        <View style={styles.item}>
-          <TouchableOpacity>
-            <View style={styles.chatBox}>
-              {/* ảnh đại diện */}
-              <View style={styles.imaContainer}>
-                <Image
-                  style={styles.imaAvatar}
-                  source={require("../images/avatar.png")}
-                ></Image>
-              </View>
-
-              <View style={styles.bodyContainer}>
-                {/* tên */}
-                <Text style={styles.textName}>Ten o day</Text>
-
-                {/* tin nhắn cuối */}
-                <Text style={styles.lastMess}>Last mess</Text>
-              </View>
-
-              <View style={styles.notification}>
-                <Ionicons
-                  name="notifications-outline"
-                  size={24}
-                  color="black"
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -94,12 +58,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
 
-  sreach: {
-    marginLeft: 10,
-    backgroundColor: "white",
-    width: 280,
-  },
-
   topTag: {
     width: "100%",
     height: 50,
@@ -114,14 +72,5 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     justifyContent: "space-between",
     flexDirection: "row",
-  },
-
-  item: {
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-
-    borderStyle: "solid",
   },
 });
