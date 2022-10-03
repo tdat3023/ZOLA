@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useState, useEffect, useRef } from "react";
 import {
   View,
+  FlatList,
   Text,
   StyleSheet,
   TouchableOpacity,
@@ -27,20 +28,25 @@ const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
 export default Contact = function ({ navigation }) {
-  const [Items, setItems] = useState([
-    { key: 1, item: "Item1" },
-    { key: 2, item: "Item2" },
-    { key: 3, item: "Item3" },
-    { key: 4, item: "Item4" },
-    { key: 5, item: "Item5" },
-    { key: 6, item: "Item6" },
-    { key: 7, item: "Item7" },
-    { key: 8, item: "Item8" },
-    { key: 9, item: "Item9" },
-    { key: 10, item: "Item10" },
-    { key: 11, item: "Item11" },
-    { key: 12, item: "Item12" },
-    { key: 13, item: "Item13" },
+  const [users, setUsers] = useState([
+    {
+      id: "1",
+      url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
+      name: "Tiến Đạt",
+      lastMessage: "Hello",
+    },
+    {
+      id: "5",
+      url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
+      name: "Tiến Đạt",
+      lastMessage: "Goodbye",
+    },
+    {
+      id: "3",
+      url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
+      name: "Tiến Đạt",
+      lastMessage: "He",
+    },
   ]);
 
   const [Refreshing, setRefreshing] = useState(false);
@@ -58,12 +64,7 @@ export default Contact = function ({ navigation }) {
       <View style={styles.container}>
         {/* button back */}
         <View style={styles.topTag}>
-          <TouchableOpacity
-            style={{ alignItems: "center", marginLeft: 10 }}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
+          <TouchableOpacity style={{ alignItems: "center", marginLeft: 10 }}>
             <AntDesign name="search1" size={24} color="black" />
           </TouchableOpacity>
           <View style={styles.sreach}>
@@ -80,26 +81,20 @@ export default Contact = function ({ navigation }) {
         {/* tagTop */}
         <View style={styles.topTagMenu}></View>
 
-        {/* scrollview */}
-        <ScrollView
-          style={{ width: "100%" }}
-          refreshControl={
-            <RefreshControl>
-              refreshing={Refreshing}
-              onRefresh={onRefresh}
-            </RefreshControl>
-          }
-        >
-          {Items.map((item) => {
-            return (
-              <View style={styles.item} key={item.key}>
+        {/* List chat */}
+        <View style={styles.bodyListChat}>
+          <FlatList
+            style={styles.bodyList}
+            data={users}
+            renderItem={({ item }) => (
+              <View style={styles.viewOne}>
                 <TouchableOpacity>
                   <View style={styles.chatBox}>
                     {/* ảnh đại diện */}
                     <View style={styles.imaContainer}>
                       <Image
                         style={styles.imaAvatar}
-                        source={require("../images/avatar.png")}
+                        source={{ uri: item.url }}
                       ></Image>
                     </View>
 
@@ -119,9 +114,10 @@ export default Contact = function ({ navigation }) {
                   </View>
                 </TouchableOpacity>
               </View>
-            );
-          })}
-        </ScrollView>
+            )}
+            keyExtractor={(item) => item.id}
+          ></FlatList>
+        </View>
       </View>
     </View>
   );
@@ -154,10 +150,13 @@ const styles = StyleSheet.create({
   },
 
   notification: {
-    width: "18%",
+    width: "20%",
+    paddingRight: 13,
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
+    height: 90,
+    borderBottomWidth: 1,
   },
 
   topTag: {
@@ -178,18 +177,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
 
-  item: {
-    backgroundColor: "white",
-    alignItems: "center",
+  viewOne: {
+    width: "100%",
+    height: 90,
     justifyContent: "center",
-    padding: 10,
-
-    borderStyle: "solid",
+    alignItems: "center",
   },
 
   chatBox: {
     width: "100%",
-    height: 70,
+    height: 90,
     flexDirection: "row",
   },
 
@@ -199,6 +196,7 @@ const styles = StyleSheet.create({
   },
 
   imaAvatar: {
+    marginLeft: 10,
     height: 70,
     width: 70,
     borderRadius: 100,
@@ -206,15 +204,16 @@ const styles = StyleSheet.create({
 
   bodyContainer: {
     marginLeft: 10,
-    marginRight: 10,
+    paddingRight: 10,
+    paddingLeft: 10,
     flex: 1,
-    backgroundColor: "gray",
-    borderwidth: 4,
+    height: 90,
+    borderBottomWidth: 1,
     justifyContent: "center",
   },
 
   textName: {
-    marginLeft: 10,
+    paddingLeft: 15,
     fontSize: 20,
     fontWeight: "bold",
   },

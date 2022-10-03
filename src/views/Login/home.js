@@ -38,7 +38,12 @@ export default Home = ({ navigation }) => {
             <Text style={{ fontSize: 20, color: "white" }}> ĐĂNG NHẬP</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.btnRegister}>
+          <TouchableOpacity
+            style={styles.btnRegister}
+            onPress={() => {
+              navigation.navigate("Resgister");
+            }}
+          >
             <Text style={{ fontSize: 20 }}> ĐĂNG KÝ</Text>
           </TouchableOpacity>
         </View>

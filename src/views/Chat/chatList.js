@@ -24,29 +24,36 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import ChatItem from "./chatItem";
+import ChatScreen from "./chatScreen";
 
 const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
-export default ChatApp = function ({ navigation , props }) {
+export default ChatApp = function ({ navigation }) {
   const [users, setUsers] = useState([
     {
-      key: "1",
+      id: "1",
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
       lastMessage: "Hello",
     },
     {
-      key: "5",
+      id: "5",
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
       lastMessage: "Goodbye",
     },
     {
-      key: "3",
+      id: "3",
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
-      lastMessage: "Hello",
+      lastMessage: "He",
+    },
+    {
+      id: "4",
+      url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
+      name: "Tiến Đạt",
+      lastMessage: "báo nhà",
     },
   ]);
 
@@ -90,12 +97,11 @@ export default ChatApp = function ({ navigation , props }) {
         {/* List chat */}
         <View style={styles.bodyListChat}>
           <FlatList
+            style={styles.bodyList}
             data={users}
-            renderItem={({ item }) => <ChatItem></ChatItem>}
+            renderItem={({ item }) => <ChatItem item={item}></ChatItem>}
             keyExtractor={(item) => item.id}
           ></FlatList>
-
-          <Image></Image>
         </View>
       </View>
     </View>
@@ -110,15 +116,14 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
     backgroundColor: "white",
   },
 
   sreach: {
     marginLeft: 10,
     backgroundColor: "white",
-    width: 280,
+    width: "70%",
   },
 
   moreTag: {
@@ -128,10 +133,11 @@ const styles = StyleSheet.create({
   },
 
   notification: {
-    width: 40,
+    paddingRight: 10,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    borderBottomWidth: 1,
   },
 
   topTag: {
@@ -145,14 +151,13 @@ const styles = StyleSheet.create({
 
   bodyListChat: {
     flex: 1,
+    width: "100%",
     alignItems: "center",
   },
 
   viewOne: {
-    marginTop: 10,
-    backgroundColor: "pink",
-    width: 380,
-    height: 70,
+    width: "100%",
+    height: 90,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -169,11 +174,9 @@ const styles = StyleSheet.create({
   },
 
   bodyContainer: {
-    marginRight: 10,
     flex: 1,
-    backgroundColor: "gray",
-    borderwidth: 4,
     justifyContent: "center",
+    borderBottomWidth: 1,
   },
 
   textName: {
@@ -189,7 +192,19 @@ const styles = StyleSheet.create({
 
   chatBox: {
     width: "100%",
-    height: 70,
+    height: 90,
     flexDirection: "row",
+  },
+
+  textNoti: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "gray",
+    width: 25,
+    borderRadius: 10,
+  },
+
+  bodyList: {
+    width: "100%",
   },
 });

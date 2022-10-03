@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StatusBar } from "expo-status-bar";
 import { useState, useEffect, useRef } from "react";
+import { NavigationContainer } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -8,9 +8,17 @@ import {
   TouchableOpacity,
   ImageBackground,
   SafeAreaView,
+  TextInput,
+  StatusBar,
   Image,
   Dimensions,
 } from "react-native";
+import {
+  AntDesign,
+  Ionicons,
+  MaterialCommunityIcons,
+  Feather,
+} from "@expo/vector-icons";
 // import background from '../src/images/background.png';
 
 const WinWidth = Dimensions.get("window").width;
@@ -20,25 +28,62 @@ export default Resgister = function () {
   return (
     <View style={styles.AndroidSafeArea}>
       <View style={styles.container}>
-        {/* button back */}
-        <View style={styles.topTag}>
+        {/* header */}
+        <View style={styles.header}>
           <TouchableOpacity
-            style={{ alignItems: "center", marginLeft: 10 }}
-            onPress={() => {
-              navigation.goBack();
-            }}
+            style={{ alignItems: "center", marginLeft: 5, marginRight: 10 }}
+            // onPress={() => {
+            //   navigation.goBack();
+            // }}
           >
-            <AntDesign name="search1" size={24} color="black" />
+            <Ionicons name="arrow-back" size={30} color="white" />
           </TouchableOpacity>
-          <View style={styles.sreach}>
-            <TextInput style={styles.textTopTag}></TextInput>
+
+          <Text style={styles.textTop}>Tạo tài khoản</Text>
+        </View>
+
+        {/* body */}
+        <View style={styles.body}>
+          <View style={styles.textName}>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>Tên Zalo</Text>
           </View>
 
-          <View style={styles.moreTag}>
-            <TouchableOpacity>
-              <Ionicons name="person-add" size={24} color="black" />
-            </TouchableOpacity>
+          {/* input login*/}
+
+          <View style={styles.textInput}>
+            <TextInput style={styles.input}></TextInput>
           </View>
+
+          {/* recover password */}
+          <View style={styles.textNote}>
+            <Text style={{ fontSize: 18, marginLeft: 15, marginTop: 5 }}>
+              Lưu ý khi đặt tên:
+            </Text>
+            <Text style={{ fontSize: 15, marginLeft: 20, marginTop: 10 }}>
+              - Không vi phạm Quy định đặt tên trên Zalo
+            </Text>
+            <Text style={{ fontSize: 15, marginLeft: 20, marginTop: 10 }}>
+              - Nên sử dụng tên thật để giúp bạn bè dễ nhận ra bạn
+            </Text>
+          </View>
+        </View>
+
+        {/* footer */}
+        <View style={styles.footer}>
+          <TouchableOpacity>
+            <Text style={{ width: 200, fontSize: 15, color: "gray" }}>
+              Tiếp tục nghĩa là bạn đồng ý với các điều khoản sử dụng Zalo
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.btnRegister}
+            // onPress={() => {
+            //   navigation.navigate("HomeTabs");
+            // }}
+          >
+            <AntDesign name="login" size={24} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -48,29 +93,68 @@ export default Resgister = function () {
 const styles = StyleSheet.create({
   AndroidSafeArea: {
     flex: 1,
-
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 
   container: {
     width: "100%",
-    height: "100%",
+    flex: 1,
     backgroundColor: "white",
   },
 
-  topTag: {
-    width: "100%",
-    height: 50,
+  header: {
+    height: 60,
     backgroundColor: "blue",
-    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    flexDirection: "row",
   },
 
-  moreTag: {
-    marginRight: 10,
-    marginLeft: 10,
+  textTop: {
+    fontSize: 20,
+    color: "white",
+  },
+
+  body: {
+    flex: 1,
+    flexDirection: "column",
+  },
+
+  textName: {
+    justifyContent: "center",
+    padding: 10,
+    height: 60,
+    paddingLeft: 20,
+  },
+
+  textInput: {
+    justifyContent: "center",
+    height: 80,
+    paddingLeft: 20,
+    paddingRight: 20,
+    alignItems: "center",
+  },
+
+  input: {
+    width: 350,
+    height: 50,
+    borderBottomWidth: 4,
+    borderColor: "blue",
+  },
+
+  footer: {
+    height: 60,
+    marginTop: 20,
+    padding: 10,
     justifyContent: "space-between",
     flexDirection: "row",
+  },
+
+  btnRegister: {
+    backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 50,
+    height: 50,
+    borderRadius: 100,
   },
 });

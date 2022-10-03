@@ -47,7 +47,7 @@ export default ProFile = function ({ navigation }) {
         </View>
 
         {/*  */}
-        <View style={styles.item}>
+        <View style={styles.center}>
           <TouchableOpacity>
             <View style={styles.chatBox}>
               {/* ảnh đại diện */}
@@ -66,13 +66,7 @@ export default ProFile = function ({ navigation }) {
                 <Text style={styles.lastMess}>Last mess</Text>
               </View>
 
-              <View style={styles.notification}>
-                <Ionicons
-                  name="notifications-outline"
-                  size={24}
-                  color="black"
-                />
-              </View>
+              <View style={styles.notification}></View>
             </View>
           </TouchableOpacity>
         </View>
@@ -116,7 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 
-  item: {
+  center: {
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",

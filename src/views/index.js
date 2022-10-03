@@ -9,7 +9,8 @@ import Login from "./Login/login";
 import ChatApp from "./Chat/chatList";
 import ProFile from "./profile";
 import Contact from "./contacts";
-
+import ChatScreen from "./Chat/chatScreen";
+import Resgister from "./Login/resgister";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -66,6 +67,8 @@ export default RootComponent = function () {
           component={MyTabs}
           screenOptions={{ headerShown: false }}
         />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        <Stack.Screen name="Resgister" component={Resgister} />
         {/* <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="ProFile" component={ProFile} />
           <Stack.Screen name="Setting" component={Setting} /> */}

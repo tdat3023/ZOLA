@@ -24,23 +24,18 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
-function ChatItem(props) {
-  let { avatar, name, lastMessage } = props.users;
-  const { onPress } = props;
-  debugger;
-
+function ChatItem({ item }) {
   return (
     <View style={styles.viewOne}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("ChatScreen");
+        }}
+      >
         <View style={styles.chatBox}>
           {/* ảnh đại diện */}
           <View style={styles.imaContainer}>
-            <Image
-              style={styles.imaAvatar}
-              source={{
-                uri: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
-              }}
-            ></Image>
+            <Image style={styles.imaAvatar} source={{ uri: item.url }}></Image>
           </View>
 
           <View style={styles.bodyContainer}>
@@ -50,8 +45,10 @@ function ChatItem(props) {
           </View>
 
           <View style={styles.notification}>
-            <Ionicons name="call-outline" size={24} color="black" />
-            <Ionicons name="videocam-outline" size={24} color="black" />
+            <Ionicons name="notifications-outline" size={24} color="black" />
+            <View style={styles.textNoti}>
+              <Text>{item.id}</Text>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
@@ -94,10 +91,8 @@ const styles = StyleSheet.create({
   },
 
   viewOne: {
-    marginTop: 10,
-    backgroundColor: "pink",
-    width: 380,
-    height: 70,
+    width: "100%",
+    height: 90,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -114,11 +109,9 @@ const styles = StyleSheet.create({
   },
 
   bodyContainer: {
-    marginRight: 10,
     flex: 1,
-    backgroundColor: "gray",
-    borderwidth: 4,
     justifyContent: "center",
+    borderBottomWidth: 1,
   },
 
   textName: {
@@ -134,8 +127,20 @@ const styles = StyleSheet.create({
 
   chatBox: {
     width: "100%",
-    height: 70,
+    height: 90,
     flexDirection: "row",
+  },
+
+  textNoti: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "gray",
+    width: 25,
+    borderRadius: 10,
+  },
+
+  bodyList: {
+    width: "100%",
   },
 });
 
