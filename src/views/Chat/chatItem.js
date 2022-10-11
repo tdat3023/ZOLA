@@ -23,15 +23,16 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import ChatScreen from "./chatScreen";
 
-function ChatItem({ item }) {
+function ChatItem({ item, navigation }) {
+  const onPress = () => {
+    navigation.navigate("ChatScreen", { item: item });
+  };
+
   return (
     <View style={styles.viewOne}>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("ChatScreen");
-        }}
-      >
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.chatBox}>
           {/* ảnh đại diện */}
           <View style={styles.imaContainer}>
@@ -46,9 +47,19 @@ function ChatItem({ item }) {
 
           <View style={styles.notification}>
             <Ionicons name="notifications-outline" size={24} color="black" />
-            <View style={styles.textNoti}>
-              <Text>{item.id}</Text>
-            </View>
+            {item.numberOfUnReadMess > 0 && (
+              <View
+                style={styles.textNoti}
+                // style={[
+                //   styles.textNoti,
+                //   {
+                //     paddingHorizontal: item.numberOfUnReadMess > 9 ? 5 : 10,
+                //   },
+                // ]}
+              >
+                <Text>{item.numberOfUnReadMess}</Text>
+              </View>
+            )}
           </View>
         </View>
       </TouchableOpacity>
@@ -57,13 +68,6 @@ function ChatItem({ item }) {
 }
 
 const styles = StyleSheet.create({
-  chatBox: {
-    width: "100%",
-    padding: 15,
-    height: 70,
-    flexDirection: "row",
-  },
-
   imaContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -74,15 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-  },
-
-  topTag: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "blue",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
+    borderBottomWidth: 1,
   },
 
   bodyListChat: {
@@ -98,6 +94,8 @@ const styles = StyleSheet.create({
   },
 
   imaContainer: {
+    marginLeft: 10,
+    marginRight: 10,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -121,6 +119,7 @@ const styles = StyleSheet.create({
   },
 
   textLastMes: {
+    marginTop: 5,
     marginLeft: 10,
     fontSize: 15,
   },
@@ -132,15 +131,12 @@ const styles = StyleSheet.create({
   },
 
   textNoti: {
+    marginTop: 5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "gray",
-    width: 25,
+    backgroundColor: "red",
+    width: 20,
     borderRadius: 10,
-  },
-
-  bodyList: {
-    width: "100%",
   },
 });
 

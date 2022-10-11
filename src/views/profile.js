@@ -21,54 +21,42 @@ import {
 const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
-export default ProFile = function ({ navigation }) {
+export default ProFile = ({ navigation }) => {
   return (
     <View style={styles.AndroidSafeArea}>
       <View style={styles.container}>
-        {/* button back */}
-        <View style={styles.topTag}>
-          <TouchableOpacity
-            style={{ alignItems: "center", marginLeft: 10 }}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
-            <AntDesign name="search1" size={24} color="black" />
-          </TouchableOpacity>
-          <View style={styles.sreach}>
-            <TextInput style={styles.textTopTag}></TextInput>
-          </View>
+        {/* header */}
+        <View style={styles.header}>
+          <View style={styles.topTag}>
+            <TouchableOpacity
+              style={{ alignItems: "center", marginLeft: 10 }}
+              onPress={() => {
+                navigation.goBack();
+              }}
+            >
+              <AntDesign name="search1" size={24} color="black" />
+            </TouchableOpacity>
 
-          <View style={styles.moreTag}>
+            <View style={styles.moreTag}>
+              <TouchableOpacity>
+                <Ionicons name="settings-outline" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+          </View>
+          {/*  */}
+          <View style={styles.center}>
             <TouchableOpacity>
-              <Ionicons name="settings-outline" size={24} color="black" />
+              <View style={styles.box}>
+                {/* ảnh đại diện */}
+                <View style={styles.imaContainer}>
+                  <Image
+                    style={styles.imaAvatar}
+                    source={require("../images/avatar.png")}
+                  ></Image>
+                </View>
+              </View>
             </TouchableOpacity>
           </View>
-        </View>
-
-        {/*  */}
-        <View style={styles.center}>
-          <TouchableOpacity>
-            <View style={styles.chatBox}>
-              {/* ảnh đại diện */}
-              <View style={styles.imaContainer}>
-                <Image
-                  style={styles.imaAvatar}
-                  source={require("../images/avatar.png")}
-                ></Image>
-              </View>
-
-              <View style={styles.bodyContainer}>
-                {/* tên */}
-                <Text style={styles.textName}>Ten o day</Text>
-
-                {/* tin nhắn cuối */}
-                <Text style={styles.lastMess}>Last mess</Text>
-              </View>
-
-              <View style={styles.notification}></View>
-            </View>
-          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -88,10 +76,11 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
 
-  sreach: {
-    marginLeft: 10,
-    backgroundColor: "white",
-    width: 280,
+  header: {
+    backgroundColor: "red",
+    flex: 1,
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 
   topTag: {
@@ -110,12 +99,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 
+  box: {},
+
   center: {
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
-
+    width: 160,
+    height: 160,
     borderStyle: "solid",
+    borderRadius: 1000,
+  },
+
+  imaContainer: {},
+
+  imaAvatar: {
+    width: 150,
+    height: 150,
+    borderRadius: 1000,
+  },
+
+  body: {
+    flex: 1,
   },
 });

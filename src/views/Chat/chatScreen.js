@@ -15,7 +15,10 @@ import {
   Feather,
 } from "@expo/vector-icons";
 
-export default ChatScreen = function (navigation) {
+export default ChatScreen = ({ props, navigation, route }) => {
+  const { item } = route.params;
+
+  console.log(item);
   return (
     <View style={styles.AndroidSafeArea}>
       <View style={styles.container}>
@@ -30,7 +33,9 @@ export default ChatScreen = function (navigation) {
             <Ionicons name="arrow-back" size={30} color="black" />
           </TouchableOpacity>
           <View style={styles.nameFriend}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>Tên ở đây</Text>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              {item.name}
+            </Text>
             <Text>Thời gian truy cập</Text>
           </View>
 

@@ -36,24 +36,28 @@ export default ChatApp = function ({ navigation }) {
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
       lastMessage: "Hello",
+      numberOfUnReadMess: "20",
     },
     {
       id: "5",
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
       lastMessage: "Goodbye",
+      numberOfUnReadMess: "1",
     },
     {
       id: "3",
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
       lastMessage: "He",
+      numberOfUnReadMess: "0",
     },
     {
       id: "4",
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
       lastMessage: "báo nhà",
+      numberOfUnReadMess: "1",
     },
   ]);
 
@@ -99,7 +103,9 @@ export default ChatApp = function ({ navigation }) {
           <FlatList
             style={styles.bodyList}
             data={users}
-            renderItem={({ item }) => <ChatItem item={item}></ChatItem>}
+            renderItem={({ item }) => (
+              <ChatItem item={item} navigation={navigation}></ChatItem>
+            )}
             keyExtractor={(item) => item.id}
           ></FlatList>
         </View>

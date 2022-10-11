@@ -27,25 +27,13 @@ import {
 const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
-export default Contact = function ({ navigation }) {
+export default Contact = ({ navigation }) => {
   const [users, setUsers] = useState([
     {
       id: "1",
       url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
       name: "Tiến Đạt",
       lastMessage: "Hello",
-    },
-    {
-      id: "5",
-      url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
-      name: "Tiến Đạt",
-      lastMessage: "Goodbye",
-    },
-    {
-      id: "3",
-      url: "https://www.sightseeingtoursitaly.com/wp-content/uploads/2019/06/Famous-Italian-dishes.jpg",
-      name: "Tiến Đạt",
-      lastMessage: "He",
     },
   ]);
 
