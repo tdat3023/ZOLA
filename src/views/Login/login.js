@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   topTag: {
     width: "100%",
     height: 45,
-    backgroundColor: "blue",
+    backgroundColor: "#66B2FF",
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",

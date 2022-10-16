@@ -21,7 +21,6 @@ const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
 export default Password = function ({ navigation }) {
-  // const [getPassWordVisible, setPassWordVisible] = useState(false);
   return (
     <View style={styles.AndroidSafeArea}>
       <Text>Test</Text>
