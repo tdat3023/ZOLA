@@ -23,7 +23,14 @@ export default Home = ({ navigation }) => {
       {/* Text Zalo */}
       <View style={styles.container}>
         <View style={styles.viewZalo}>
-          <Text style={{ fontSize: 40, color: "blue", alignItems: "center" }}>
+          <Text
+            style={{
+              fontSize: 90,
+              fontWeight: "500",
+              color: "blue",
+              alignItems: "center",
+            }}
+          >
             Zalo
           </Text>
         </View>
@@ -77,7 +84,7 @@ const styles = StyleSheet.create({
   viewZalo: {
     width: "100%",
     height: "40%",
-    backgroundColor: "red",
+    justifyContent: "center",
     alignItems: "center",
   },
 

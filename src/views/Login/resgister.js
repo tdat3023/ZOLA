@@ -24,7 +24,7 @@ import {
 const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
-export default Resgister = function () {
+export default Resgister = function ({ navigation }) {
   return (
     <View style={styles.AndroidSafeArea}>
       <View style={styles.container}>
@@ -32,9 +32,9 @@ export default Resgister = function () {
         <View style={styles.header}>
           <TouchableOpacity
             style={{ alignItems: "center", marginLeft: 5, marginRight: 10 }}
-            // onPress={() => {
-            //   navigation.goBack();
-            // }}
+            onPress={() => {
+              navigation.goBack();
+            }}
           >
             <Ionicons name="arrow-back" size={30} color="white" />
           </TouchableOpacity>
@@ -78,11 +78,11 @@ export default Resgister = function () {
 
           <TouchableOpacity
             style={styles.btnRegister}
-            // onPress={() => {
-            //   navigation.navigate("HomeTabs");
-            // }}
+            onPress={() => {
+              navigation.navigate("Password");
+            }}
           >
-            <AntDesign name="login" size={24} color="black" />
+            <AntDesign name="login" size={24} color="white" />
           </TouchableOpacity>
         </View>
       </View>
@@ -156,5 +156,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 100,
+    // marginBottom: 20,
   },
 });

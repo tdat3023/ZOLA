@@ -20,7 +20,7 @@ import {
 const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
-export default Password = function ({ navigation }) {
+export default Password = ({ navigation }) => {
   return (
     <View style={styles.AndroidSafeArea}>
       <Text>Test</Text>

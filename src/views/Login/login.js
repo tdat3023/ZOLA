@@ -15,6 +15,8 @@ import {
   Dimensions,
   Platform,
   StatusBar,
+  KeyboardAvoidingView,
+  Keyboard,
 } from "react-native";
 
 const WinWidth = Dimensions.get("window").width;
@@ -22,6 +24,19 @@ const WinHeight = Dimensions.get("window").height;
 
 export default Login = function ({ navigation }) {
   const [getPassWordVisible, setPassWordVisible] = useState(false);
+
+  //states for validating
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  //states to store email/password
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  // const isValidationOK = () =>
+  //   email.length > 0 &&
+  //   password.length > 0 &&
+  //   isValidEmail(email) == true &&
+  //   isValidPassword(password) == true;
+
   return (
     <View style={styles.AndroidSafeArea}>
       <View style={styles.container}>
@@ -41,7 +56,7 @@ export default Login = function ({ navigation }) {
 
         <View style={styles.textRemind}>
           <Text style={{ fontSize: 12 }}>
-            Vui lòng nhập số điện thoại và mật khẩu để đăng nhập
+            Vui lòng nhập email và mật khẩu để đăng nhập
           </Text>
         </View>
 
@@ -49,14 +64,28 @@ export default Login = function ({ navigation }) {
         <View style={styles.input}>
           {/* email */}
           <View style={styles.viewAcc}>
-            <TextInput style={styles.inputAcc}></TextInput>
+            <TextInput
+              style={styles.inputAcc}
+              keyboardType="email"
+              placeholder="example@gmail.com"
+              value={email}
+              onChangeText={(text) => {
+                setEmail(text);
+              }}
+            ></TextInput>
           </View>
 
           {/* password */}
           <View style={styles.viewPassword}>
             <TextInput
               style={styles.inputPassword}
+              placeholder="Enter your password"
+              value={password}
+              onChangeText={(text) => {
+                setPassword(text);
+              }}
               secureTextEntry={getPassWordVisible ? false : true}
+              secureTextEntry={true}
             ></TextInput>
             <TouchableOpacity
               onPress={() => {
@@ -83,7 +112,11 @@ export default Login = function ({ navigation }) {
 
           {/* recover password */}
           <View style={styles.recoverPassword}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            // onPress={() => {
+            //   navigation.navigate("Password");
+            // }}
+            >
               <Text style={{ fontSize: 15, color: "blue" }}>
                 Lấy lại mật khẩu
               </Text>
