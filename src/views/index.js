@@ -12,10 +12,35 @@ import ProFile from "./profile";
 import Contact from "./contacts";
 import ChatScreen from "./Chat/chatScreen";
 import Resgister from "./Login/resgister";
+import { firebase } from "Zola/firebase/firebaseDB";
+import "firebase/compat/auth";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  console.log("config firebase");
+  //  Handle user state changes
+  function onAuthStateChange(user) {
+    setUser(user);
+    console.log(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const unregisterAuthObserver = firebase
+      .auth()
+      .onAuthStateChanged((user) => {
+        console.log(user);
+        if (!user) {
+        } else {
+        }
+      });
+
+    return () => unregisterAuthObserver();
+  }, []);
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       {/* <Tab.Screen name="Home" component={Home}/> */}

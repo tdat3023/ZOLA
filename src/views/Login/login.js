@@ -18,24 +18,46 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
+import { firebase } from "Zola/firebase/firebaseDB";
+import "firebase/compat/auth";
+import { isValidEmail, isValidPassword } from "Zola/utilies/Validations";
 
 const WinWidth = Dimensions.get("window").width;
 const WinHeight = Dimensions.get("window").height;
 
 export default Login = function ({ navigation }) {
+  // const user = auth().currentUser;
   const [getPassWordVisible, setPassWordVisible] = useState(false);
-
   //states for validating
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   //states to store email/password
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  // const isValidationOK = () =>
-  //   email.length > 0 &&
-  //   password.length > 0 &&
-  //   isValidEmail(email) == true &&
-  //   isValidPassword(password) == true;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const isValidationOK = () => {
+    email.length > 0 &&
+      password.length > 0 &&
+      isValidEmail(email) == true &&
+      isValidPassword(password) == true;
+    // console.log(firebaseDatabase);
+  };
+
+  const handleLogin = () => {
+    //send email, pass to server
+    const loginFunc = (mail, pass) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(mail, pass)
+        .then((userCredential) => {
+          //redict homepage
+          navigation.navigate("HomeTabs");
+        })
+        .catch((error) => {
+          alert("error");
+        });
+    };
+    loginFunc(email, password);
+  };
 
   return (
     <View style={styles.AndroidSafeArea}>
@@ -66,12 +88,16 @@ export default Login = function ({ navigation }) {
           <View style={styles.viewAcc}>
             <TextInput
               style={styles.inputAcc}
-              keyboardType="email"
-              placeholder="example@gmail.com"
               value={email}
               onChangeText={(text) => {
+                setErrorEmail(
+                  isValidEmail(text) == true
+                    ? ""
+                    : "Email not in correct format"
+                );
                 setEmail(text);
               }}
+              placeholder="example@gmail.com"
             ></TextInput>
           </View>
 
@@ -79,13 +105,13 @@ export default Login = function ({ navigation }) {
           <View style={styles.viewPassword}>
             <TextInput
               style={styles.inputPassword}
-              placeholder="Enter your password"
               value={password}
               onChangeText={(text) => {
                 setPassword(text);
               }}
-              secureTextEntry={getPassWordVisible ? false : true}
+              placeholder="Enter your password"
               secureTextEntry={true}
+              secureTextEntry={getPassWordVisible ? false : true}
             ></TextInput>
             <TouchableOpacity
               onPress={() => {
@@ -134,9 +160,8 @@ export default Login = function ({ navigation }) {
 
           <TouchableOpacity
             style={styles.login}
-            onPress={() => {
-              navigation.navigate("HomeTabs");
-            }}
+            disabled={isValidationOK() == false}
+            onPress={() => handleLogin()}
           >
             <AntDesign name="login" size={24} color="black" />
           </TouchableOpacity>
